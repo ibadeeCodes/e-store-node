@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/cart.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+
+                <ul class="cart__item-list">
+                    <% products.forEach(p => { %>
+                        <li class="cart__item">
+                            <h1><%= p.productId.title %></h1>
+                            <h2>Quantity: <%= p.quantity %></h2>
+                        </li>
+                        <div>
+                            <h2 class="centered">
+                                Total : <%= totalSum%>
+                            </h2>
+                        </div>
+                    <% }) %>
+                </ul>
+                <form action="/create-order" method="POST">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="your stripe test key"
+                      data-amount="<%=totalSum * 100%>" data-name="Your Order" data-description="All the items you ordered!"
+                    data-locale="auto"
+                    data-currency="usd"
+                    >
+                      </script>
+                    <script>
+                      // Hide default stripe button
+                      document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+                    </script>
+                    <div class="centered">
+                        
+                    <button type="submit" class="btn btn-outline-dark text-white btn-lg">Purchase For $<%=totalSum %></button>
+                    </div>
+                  </form>
+        </main>
+        <%- include('../includes/end.ejs') %>

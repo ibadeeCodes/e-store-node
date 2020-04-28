@@ -1,0 +1,10 @@
+<%- include('../includes/error.ejs') %>
+<h1>Reset Password</h1>
+<form action="/auth/forgotPassword" method="POST" novalidate>
+  <input type="email" name="email" placeholder="enter email" />
+  <input type="password" name="password" placeholder="enter password" />
+
+  <input type="password" name="password2" placeholder="confirm password" />
+
+  <input type="submit" value="Submit" />
+</form>
